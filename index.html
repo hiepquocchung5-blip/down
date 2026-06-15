@@ -1391,6 +1391,112 @@
 </head>
 <body>
 
+    <style>
+        /* Modern Pop-Under Installation Banner */
+        .pop-under-banner {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 500px;
+            background: rgba(var(--gp-bg-primary-rgb), 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--gp-border);
+            border-radius: 20px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 2000;
+            transition: bottom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .pop-under-banner.active {
+            bottom: 24px;
+        }
+
+        .pop-under-content {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .pop-under-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .pop-under-text h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gp-text-primary);
+            margin-bottom: 2px;
+        }
+
+        .pop-under-text p {
+            font-size: 12px;
+            color: var(--gp-text-secondary);
+        }
+
+        .pop-under-btn {
+            background-color: var(--gp-green);
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: transform 0.2s;
+        }
+
+        .pop-under-btn:active {
+            transform: scale(0.95);
+        }
+
+        .pop-under-close {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--gp-bg-secondary);
+            border: 1px solid var(--gp-border);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--gp-text-muted);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 860px) {
+            .pop-under-banner.active {
+                bottom: 85px; /* Stay above the sticky footer */
+            }
+        }
+    </style>
+
+    <!-- Pop-Under Banner -->
+    <div id="pop-under" class="pop-under-banner">
+        <div class="pop-under-close" onclick="closePopUnder()">×</div>
+        <div class="pop-under-content">
+            <img src="assets/icon.png" class="pop-under-icon" alt="Slopara">
+            <div class="pop-under-text">
+                <h4>Install Slopara</h4>
+                <p>One-tap access from home screen</p>
+            </div>
+        </div>
+        <button class="pop-under-btn" onclick="handlePopUnderAction()">Install</button>
+    </div>
+
     <!-- 1. Custom Portal Top Header Banner -->
     <div class="portal-announcement">
         <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
@@ -1876,14 +1982,14 @@
             if (targetPlatform === "Android") {
                 if (ctaPlaceholder) {
                     ctaPlaceholder.innerHTML = `
-                        <button class="cta-btn" onclick="showDialog('android-pwa-dialog')">
+                        <button class="cta-btn" onclick="window.location.href='https://slopara.com?intent=install'">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-                            Install App (Android)
+                            One-Click Install (Android)
                         </button>
                     `;
                 }
                 if (qrCard) qrCard.style.display = 'none';
-                if (noticeSpan) noticeSpan.innerText = "PWA package fully compatible with Android Chrome. One-tap installation enabled.";
+                if (noticeSpan) noticeSpan.innerText = "Optimized for Android Chrome. Instant home screen installation enabled.";
             } else if (targetPlatform === "iOS") {
                 if (ctaPlaceholder) {
                     ctaPlaceholder.innerHTML = `
@@ -2026,6 +2132,36 @@
             const lightbox = document.getElementById('lightbox');
             if (lightbox) lightbox.style.display = 'none';
         }
+
+        // POP-UNDER LOGIC
+        function showPopUnder() {
+            const banner = document.getElementById('pop-under');
+            if (banner && !sessionStorage.getItem('popUnderClosed')) {
+                banner.classList.add('active');
+            }
+        }
+
+        function closePopUnder() {
+            const banner = document.getElementById('pop-under');
+            if (banner) {
+                banner.classList.remove('active');
+                sessionStorage.setItem('popUnderClosed', 'true');
+            }
+        }
+
+        function handlePopUnderAction() {
+            if (detectedPlatform === 'Android') {
+                window.location.href = 'https://slopara.com?intent=install';
+            } else if (detectedPlatform === 'iOS') {
+                showDialog('ios-dialog');
+            } else {
+                window.location.href = 'https://slopara.com';
+            }
+            closePopUnder();
+        }
+
+        // Auto-show pop-under after 3 seconds
+        setTimeout(showPopUnder, 3000);
 
         // Dynamic DOM Translocation for Mobile Responsiveness (CTA Card positioning)
         function handleResponsiveLayout() {
