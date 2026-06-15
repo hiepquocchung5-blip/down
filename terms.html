@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Terms of Service - Slopara</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gp-green: #01875f;
+            --gp-bg-primary: #ffffff;
+            --gp-bg-secondary: #f1f3f4;
+            --gp-border: #e8eaed;
+            --gp-text-primary: #202124;
+            --gp-text-secondary: #5f6368;
+            
+            --gp-navbar-bg: #ffffff;
+            --gp-navbar-brand: #202124;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --gp-bg-primary: #111111;
+                --gp-bg-secondary: #1f1f1f;
+                --gp-border: rgba(255, 255, 255, 0.08);
+                --gp-text-primary: #e8eaed;
+                --gp-text-secondary: #e8eaedb3;
+                
+                --gp-navbar-bg: #1f1f1f;
+                --gp-navbar-brand: #ffffff;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--gp-bg-primary);
+            color: var(--gp-text-primary);
+            font-family: 'Roboto', 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        .gp-navbar {
+            background-color: var(--gp-navbar-bg);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            border-bottom: 1px solid var(--gp-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .gp-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .gp-logo {
+            width: 32px;
+            height: 32px;
+        }
+
+        .gp-brand-text {
+            font-size: 20px;
+            color: var(--gp-navbar-brand);
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        .content-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px 80px 24px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: var(--gp-text-primary);
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--gp-text-primary);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--gp-text-secondary);
+            font-size: 15px;
+        }
+
+        ul {
+            margin-left: 24px;
+            margin-bottom: 16px;
+            color: var(--gp-text-secondary);
+            font-size: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .last-updated {
+            font-size: 13px;
+            color: var(--gp-green);
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+
+        footer {
+            border-top: 1px solid var(--gp-border);
+            padding: 30px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--gp-text-secondary);
+            background-color: var(--gp-bg-secondary);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gp-green);
+            font-weight: 500;
+            margin-bottom: 24px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="gp-navbar">
+        <a href="index.html" class="gp-logo-container">
+            <svg class="gp-logo" viewBox="0 0 40 40">
+                <path d="M6 3.27a3.3 3.3 0 0 0-3 3v33.46a3.3 3.3 0 0 0 3 3l19.5-19.5L6 3.27z" fill="#ea4335"/>
+                <path d="M34.74 15.35L29 12.06 25.5 19.86l3.5 3.5 5.74-3.29a3.29 3.29 0 0 0 0-5.72z" fill="#fbbc05"/>
+                <path d="M6 3.27l19.5 19.5 3.5-3.5-23.36-13a3.3 3.3 0 0 0-3 0z" fill="#34a853"/>
+                <path d="M6 39.73a3.3 3.3 0 0 0 3 0l19.5-11-3.5-3.5L6 39.73z" fill="#4285f4"/>
+            </svg>
+            <span class="gp-brand-text">Google Play</span>
+        </a>
+    </header>
+
+    <main class="content-container">
+        <a href="index.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to App Details
+        </a>
+
+        <h1>Terms of Service</h1>
+        <div class="last-updated">Last Updated: June 13, 2026</div>
+
+        <p>By downloading or using the Slopara mobile application and services, you agree to comply with and be bound by the following Terms of Service.</p>
+
+        <h2>1. Age Restrictions</h2>
+        <p>You must be at least 18 years of age to download, register, or play Slopara. This App features high-fidelity slot simulations and arcade cabin aesthetics designed strictly for adult users. Access by anyone under 18 is prohibited.</p>
+
+        <h2>2. Virtual Currency (Slopara Coins)</h2>
+        <p>The App operates entirely on a virtual currency system ("Slopara Coins" or "Coins"):</p>
+        <ul>
+            <li>Coins are awarded for free via daily logins, events, and in-game tasks.</li>
+            <li>Coins have <strong>no real-world monetary value</strong>. They cannot be withdrawn, refunded, or exchanged for real-world currency or goods.</li>
+            <li>Purchase of optional coin packs is final. All transactions are virtual and strictly for entertainment extension purposes.</li>
+            <li>Transfer or sale of virtual coins or profiles between accounts is strictly prohibited.</li>
+        </ul>
+
+        <h2>3. Fair Play Policies</h2>
+        <p>To keep the gameplay environment safe and enjoyable, you agree not to:</p>
+        <ul>
+            <li>Decompile, reverse-engineer, or attempt to extract the source code of the slot cabinets or client client applications.</li>
+            <li>Deploy bots, cheats, or click-hacks to automate slot spins or claim bonuses in bulk.</li>
+            <li>Exploit server bugs or latency issues for virtual coin duplication. Any suspicious activity will result in immediate profile suspension.</li>
+        </ul>
+
+        <h2>4. Disclaimers of Warranties</h2>
+        <p>Slopara is provided on an "as-is" and "as-available" basis. We do not guarantee uninterrupted, secure, or bug-free operation of the servers. System adjustments, balancing, or scheduled updates may reset or update virtual cabinet statistics without prior notice.</p>
+
+        <h2>5. Limitation of Liability</h2>
+        <p>Under no circumstances will Slopara Studio or ストパラ株式会社 be liable for any direct, indirect, incidental, or consequential damages resulting from your use of the App or your inability to download the apk bundle.</p>
+
+        <h2>6. Governing Law</h2>
+        <p>These terms are governed by the laws of Japan. Any disputes arising from the use of the App will be submitted to the exclusive jurisdiction of the courts of Tokyo, Japan.</p>
+    </main>
+
+    <footer>
+        <p>© 2026 Google Play. All Slopara symbols and logos are trademarks of Slopara Studio.</p>
+        <p style="margin-top: 8px; font-size: 11px; opacity: 0.8;">ストパラ株式会社 • 東京都渋谷区円山町5番3号 MIEUX渋谷ビル8階</p>
+    </footer>
+
+</body>
+</html>
