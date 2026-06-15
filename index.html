@@ -1736,43 +1736,43 @@
         </div>
     </footer>
 
-    <!-- Native Modern Dialog: Android Instructions -->
-    <dialog id="android-dialog">
+    <!-- Native Modern Dialog: Android PWA Instructions -->
+    <dialog id="android-pwa-dialog">
         <div class="dialog-header">
-            <h3 class="dialog-title">Installing Slopara APK</h3>
-            <button class="dialog-close-btn" onclick="closeDialog('android-dialog')" aria-label="Close">
+            <h3 class="dialog-title">Install Slopara on Android</h3>
+            <button class="dialog-close-btn" onclick="closeDialog('android-pwa-dialog')" aria-label="Close">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
         </div>
         <div class="dialog-content">
-            <p>Your download has started! Please follow these simple steps to install the app:</p>
+            <p>For the best experience, install Slopara directly to your Home Screen using Chrome:</p>
             
             <div class="step-item">
                 <div class="step-number">1</div>
                 <div class="step-info">
-                    <div class="step-title">Open APK File</div>
-                    <div class="step-desc">Pull down your notification shade or open your files app, and tap on the downloaded file: <code>slopara-app-release.apk</code>.</div>
+                    <div class="step-title">Tap Chrome Menu</div>
+                    <div class="step-desc">Tap the <strong>three dots (⋮)</strong> in the top right corner of Chrome.</div>
                 </div>
             </div>
 
             <div class="step-item">
                 <div class="step-number">2</div>
                 <div class="step-info">
-                    <div class="step-title">Enable Unknown Sources</div>
-                    <div class="step-desc">If prompted, tap <strong>Settings</strong> and switch on <em>"Allow from this source"</em> to authorize the browser installation.</div>
+                    <div class="step-title">Install App</div>
+                    <div class="step-desc">Select <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong> from the menu.</div>
                 </div>
             </div>
 
             <div class="step-item">
                 <div class="step-number">3</div>
                 <div class="step-info">
-                    <div class="step-title">Complete Installation</div>
-                    <div class="step-desc">Return to the package installer screen and click <strong>Install</strong>. Once completed, tap <strong>Open</strong> to start your slots journey.</div>
+                    <div class="step-title">Confirm & Open</div>
+                    <div class="step-desc">Tap <strong>Install</strong> in the pop-up. Slopara is now ready on your home screen!</div>
                 </div>
             </div>
         </div>
         <div class="dialog-footer">
-            <button class="cta-btn" style="padding: 10px 20px; font-size: 14px;" onclick="closeDialog('android-dialog')">Got It</button>
+            <button class="cta-btn" style="padding: 10px 20px; font-size: 14px;" onclick="window.location.href='https://slopara.com'">Launch App</button>
         </div>
     </dialog>
 
@@ -1828,7 +1828,7 @@
             </div>
         </div>
         <div class="dialog-footer">
-            <button class="cta-btn" style="padding: 10px 20px; font-size: 14px;" onclick="closeDialog('ios-dialog')">Okay, got it</button>
+            <button class="cta-btn" style="padding: 10px 20px; font-size: 14px;" onclick="window.location.href='https://slopara.com'">Launch App</button>
         </div>
     </dialog>
 
@@ -1876,14 +1876,14 @@
             if (targetPlatform === "Android") {
                 if (ctaPlaceholder) {
                     ctaPlaceholder.innerHTML = `
-                        <button class="cta-btn" onclick="triggerAndroidDownload()">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                            Download & Install APK
+                        <button class="cta-btn" onclick="showDialog('android-pwa-dialog')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                            Install App (Android)
                         </button>
                     `;
                 }
                 if (qrCard) qrCard.style.display = 'none';
-                if (noticeSpan) noticeSpan.innerText = "Official APK package is fully compatible with your Android device. Security verified.";
+                if (noticeSpan) noticeSpan.innerText = "PWA package fully compatible with Android Chrome. One-tap installation enabled.";
             } else if (targetPlatform === "iOS") {
                 if (ctaPlaceholder) {
                     ctaPlaceholder.innerHTML = `
@@ -1898,16 +1898,16 @@
             } else { // Desktop
                 if (ctaPlaceholder) {
                     ctaPlaceholder.innerHTML = `
-                        <button class="cta-btn" onclick="triggerAndroidDownload()" style="margin-bottom: 8px;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                            Download APK for Mobile
+                        <button class="cta-btn" onclick="window.location.href='https://slopara.com'" style="margin-bottom: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                            Launch Web App
                         </button>
                     `;
                 }
                 if (qrCard) {
                     qrCard.style.display = (window.innerWidth > 860) ? 'flex' : 'none';
                 }
-                if (noticeSpan) noticeSpan.innerText = "Play instantly in your web browser. Scanning the QR code allows sideloading onto mobile devices.";
+                if (noticeSpan) noticeSpan.innerText = "Access the optimized PWA version directly. Scan the QR code to install on your mobile device instantly.";
             }
         }
 
