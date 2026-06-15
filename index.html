@@ -20,6 +20,7 @@
             --gp-green: #01875f;
             --gp-green-hover: #019e6f;
             --gp-bg-primary: #ffffff;
+            --gp-bg-primary-rgb: 255, 255, 255;
             --gp-bg-secondary: #f1f3f4;
             --gp-bg-card: #ffffff;
             --gp-border: #e8eaed;
@@ -51,6 +52,7 @@
         @media (prefers-color-scheme: dark) {
             :root {
                 --gp-bg-primary: #111111;
+                --gp-bg-primary-rgb: 17, 17, 17;
                 --gp-bg-secondary: #1f1f1f;
                 --gp-bg-card: #1f1f1f;
                 --gp-border: rgba(255, 255, 255, 0.08);
@@ -86,6 +88,10 @@
             padding: 0;
             -webkit-tap-highlight-color: transparent;
             outline: none !important; /* Disable default blue focus highlight outlines */
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         html, body {
@@ -303,7 +309,7 @@
         @media (max-width: 860px) {
             .main-layout {
                 grid-template-columns: 1fr;
-                padding: 24px 16px;
+                padding: 24px 16px 120px 16px; /* Increased bottom padding for sticky footer */
                 gap: 24px;
             }
         }
@@ -556,6 +562,19 @@
         @media (max-width: 860px) {
             #mobile-cta-placeholder {
                 display: block;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: var(--gp-bg-primary);
+                /* Glass effect for modern browsers */
+                backdrop-filter: blur(10px);
+                background-color: rgba(var(--gp-bg-primary-rgb, 255, 255, 255), 0.9);
+                padding: 12px 16px env(safe-area-inset-bottom, 12px);
+                border-top: 1px solid var(--gp-border);
+                box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
+                margin-bottom: 0;
             }
 
             .cta-card {
@@ -1427,7 +1446,7 @@
                 <div class="app-icon-wrapper">
                     <picture>
                         <source srcset="assets/icon.webp" type="image/webp">
-                        <img src="assets/icon.png" alt="Slopara App Icon" class="app-icon" onerror="this.src='https://api.dicebear.com/7.x/identicon/svg?seed=slopara'">
+                        <img src="assets/icon.png" alt="Slopara App Icon" class="app-icon" loading="lazy" onerror="this.src='https://api.dicebear.com/7.x/identicon/svg?seed=slopara'">
                     </picture>
                 </div>
                 <div class="app-details">
@@ -1497,19 +1516,19 @@
                         <div class="screenshot-item">
                             <picture>
                                 <source srcset="assets/island_1.webp" type="image/webp">
-                                <img src="assets/island_1.png" alt="Kyoto Seeding Level" onclick="openLightbox(this.src)">
+                                <img src="assets/island_1.png" alt="Kyoto Seeding Level" loading="lazy" onclick="openLightbox(this.src)">
                             </picture>
                         </div>
                         <div class="screenshot-item">
                             <picture>
                                 <source srcset="assets/island_2.webp" type="image/webp">
-                                <img src="assets/island_2.png" alt="Kyoto Chance Bonus Reel" onclick="openLightbox(this.src)">
+                                <img src="assets/island_2.png" alt="Kyoto Chance Bonus Reel" loading="lazy" onclick="openLightbox(this.src)">
                             </picture>
                         </div>
                         <div class="screenshot-item">
                             <picture>
                                 <source srcset="assets/island_3.webp" type="image/webp">
-                                <img src="assets/island_3.png" alt="Tokyo Neon Slots" onclick="openLightbox(this.src)">
+                                <img src="assets/island_3.png" alt="Tokyo Neon Slots" loading="lazy" onclick="openLightbox(this.src)">
                             </picture>
                         </div>
                     </div>
@@ -1859,18 +1878,18 @@
                     ctaPlaceholder.innerHTML = `
                         <button class="cta-btn" onclick="triggerAndroidDownload()">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                            Install (Android APK)
+                            Download & Install APK
                         </button>
                     `;
                 }
                 if (qrCard) qrCard.style.display = 'none';
-                if (noticeSpan) noticeSpan.innerText = "This APK package is fully compatible with your Android device. Security verified.";
+                if (noticeSpan) noticeSpan.innerText = "Official APK package is fully compatible with your Android device. Security verified.";
             } else if (targetPlatform === "iOS") {
                 if (ctaPlaceholder) {
                     ctaPlaceholder.innerHTML = `
                         <button class="cta-btn" onclick="showDialog('ios-dialog')">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-                            Install App (iOS)
+                            Add to Home Screen (iOS)
                         </button>
                     `;
                 }
@@ -1881,7 +1900,7 @@
                     ctaPlaceholder.innerHTML = `
                         <button class="cta-btn" onclick="triggerAndroidDownload()" style="margin-bottom: 8px;">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                            Download APK (Android)
+                            Download APK for Mobile
                         </button>
                     `;
                 }
@@ -1908,7 +1927,8 @@
 
         // Trigger Android direct download and fake progress bar
         function triggerAndroidDownload() {
-            window.location.href = "https://slopara.com/downloads/slopara-app-release.apk";
+            // Updated to the actual provided download link
+            window.location.href = "https://download.slopara.com/downloads/slopara.apk";
             
             const progressContainer = document.getElementById('download-progress');
             const fill = document.getElementById('download-bar-fill');
